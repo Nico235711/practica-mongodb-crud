@@ -1,19 +1,26 @@
+import PetsModel from "../models/pets.js"
 
-export class MascotsController {
+class PetsController {
+  constructor() {
+
+  }
 
   // mét. asíncrono porque el back debe esperar una respuesta
-  static createMascot = async (req, res) => {
+  async createPet (req, res) {
     try {
-      res.status(201).json("Esta OK")
+      const data = await PetsModel.create(req.body)
+      console.log(data);
+      
+      res.status(201).json(data)
     } catch (error) {
       res.status(500).json(error)
       
     }
   }
 
-  static getAllMascots = async (req, res) => {
+  async getAllPets (req, res) {
     try {
-      // console.log("Hello mascots");
+      // console.log("Hello Pets");
       
     } catch (error) {
       console.log(error);
@@ -21,16 +28,7 @@ export class MascotsController {
     }
   }
 
-  static getMascotById = async (req, res) => {
-    try {
-      
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
-
-  static updateMascotById = async (req, res) => {
+  async getPetById (req, res) {
     try {
       
     } catch (error) {
@@ -39,7 +37,16 @@ export class MascotsController {
     }
   }
 
-  static deleteMascotById = async (req, res) => {
+  async updatePetById (req, res) {
+    try {
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  async deletePetById (req, res) {
     try {
       
     } catch (error) {
@@ -48,3 +55,5 @@ export class MascotsController {
     }
   }
 }
+
+export default new PetsController()

@@ -1,10 +1,15 @@
 import express from 'express'
-import mascotsRouter from './routes/mascots.js'
+import petsRouter from './routes/pets.js'
+import bodyParser from 'body-parser'
 
 // creo mi instancia de express
 const server = express()
 
-// indico que todas las rutas van a pertenecer a mascotas
-server.use("/mascots", mascotsRouter)
+// manejo formato JSON
+server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({ extended: true }))
+
+// indico que todas las rutas van a pertenecer a petas
+server.use("/pets", petsRouter)
 
 export default server

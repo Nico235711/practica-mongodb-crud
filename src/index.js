@@ -1,4 +1,5 @@
 import server from "./server.js";
+import "dotenv/config"
 
 try {
   const PORT = process.env.PORT || 4000
