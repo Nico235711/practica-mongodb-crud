@@ -9,7 +9,7 @@ class PetsController {
   async createPet (req, res) {
     try {
       const data = await PetsModel.create(req.body)
-      console.log(data);
+      // console.log(data);
       
       res.status(201).json(data)
     } catch (error) {
@@ -20,37 +20,51 @@ class PetsController {
 
   async getAllPets (req, res) {
     try {
-      // console.log("Hello Pets");
+      const data = await PetsModel.getAllPets()
+      // console.log(data);
       
+      res.status(200).json(data)
     } catch (error) {
-      console.log(error);
+      res.status(500).json(error)
       
     }
   }
 
   async getPetById (req, res) {
     try {
+      const { id } = req.params
+      const data = await PetsModel.getPet(id)
+      // console.log(data);
       
+      res.status(200).json(data)
     } catch (error) {
-      console.log(error);
+      res.status(500).json(error)
       
     }
   }
 
   async updatePetById (req, res) {
     try {
+      const { id } = req.params
+      const data = await PetsModel.updatePet(id, req.body)
+      console.log(data);
       
+      res.status(200).json(data)
     } catch (error) {
-      console.log(error);
+      res.status(500).json(error)
       
     }
   }
 
   async deletePetById (req, res) {
     try {
+      const { id } = req.params
+      const data = await PetsModel.deletePet(id)
+      console.log(data);
       
+      res.status(200).json(data)
     } catch (error) {
-      console.log(error);
+      res.status(500).json(error)
       
     }
   }
