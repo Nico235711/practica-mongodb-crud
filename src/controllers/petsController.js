@@ -1,4 +1,4 @@
-import PetsModel from "../models/pets.js"
+import PetsModel from "../models/pets.model.js"
 
 class PetsController {
   constructor() {

@@ -1,32 +1,33 @@
 import { ObjectId } from "mongodb";
 import DbClient from "../config/dbClient.js";
+import petsSchema from "../schemas/pets.schema.js";
+
 
 class PetsModel {
-  async create(pet) {
-    const collectionPets = DbClient.db.collection("pets")
-    return await collectionPets.insertOne(pet)
+  
+  // si los mét. son static no es necesario retorna una instancia
+  static async create(pet) {
+    return await petsSchema.create(pet)
   }
 
-  async getAllPets() {
-    const collectionPets = DbClient.db.collection("pets")
-    // las llaves del find indican un filtro
-    return await collectionPets.find({}).toArray()
+  static async getAllPets() {
+    return await petsSchema.find()
   }
 
-  async getPet(id) {
+  static async getPet(id) {
     const collectionPets = DbClient.db.collection("pets")
     return await collectionPets.findOne({ _id: new ObjectId(id) })
   }
 
-  async updatePet(id, pet) {
+  static async updatePet(id, pet) {
     const collectionPets = DbClient.db.collection("pets")
     return await collectionPets.updateOne({ _id: new ObjectId(id) }, { $set: pet })
   }
 
-  async deletePet(id) {
+  static async deletePet(id) {
     const collectionPets = DbClient.db.collection("pets")
     return await collectionPets.deleteOne({ _id: new ObjectId(id) })
   }
 }
 
-export default new PetsModel
+export default PetsModel
